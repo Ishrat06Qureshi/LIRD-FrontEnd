@@ -1,0 +1,88 @@
+<mat-card >
+    <mat-card-header>
+      <mat-card-title> Client credentials </mat-card-title>
+    </mat-card-header>
+        <mat-card-content>
+            <form class="example-container" [formGroup] = "clientForm" (ngSubmit) = "onRegisterSubmit()" >
+                   
+                    <mat-form-field class="form-field">
+                           <mat-label>Client Name</mat-label>
+                           <input  matInput  
+                           placeholder="eg john" 
+                            name="clientName" 
+                            formControlName = "clientName"
+                            [(ngModel)] = "client.clientName"
+                             required>
+                           <mat-hint>Hint</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field >
+                            <mat-label>Client's Email</mat-label>
+                            <input  matInput  
+                            placeholder="eg john@gmail.com"
+                              name="clientEmail" 
+                               required
+                               formControlName = "clientEmail"
+                               [(ngModel)] = "client.clientEmail"
+                            >
+                            
+                         </mat-form-field>
+                         <mat-form-field >
+                            <mat-label>Which form to load</mat-label>
+                            <select matNativeControl 
+                            name="formType" 
+                            formControlName = "formType"
+                               [(ngModel)] = "client.formType"
+                            required>
+
+                                <option value="LIRD_and_EXP_Internal_Replacement">LIRD and EXP – Internal Replacement</option>
+                                <option value="LIRD_and_EXP_External_Replacement">LIRD and EXP – External Replacement</option>
+                                <option value="Quebec">Quebec Notice of Replacement</option>
+                                
+                              </select>
+                         </mat-form-field>
+                         <mat-form-field *ngIf = "TestAbc" >
+                            <mat-label>Language </mat-label>
+                            <select matNativeControl 
+                            name="language" 
+                            formControlName = "language"
+                               [(ngModel)] = "client.language"
+                            required>
+                                <option value="english">English - EN</option>
+                                <option value="french"> French - FR </option>
+                              
+                              </select>
+                         </mat-form-field>
+                         <mat-form-field *ngIf = "TestAbc" >
+                           <mat-label>No OF Representative </mat-label>
+                           <select matNativeControl 
+                           name="noOfRepresentative" 
+                           formControlName = "noOfRepresentative"
+                              [(ngModel)] = "client.noOfRepresentative"
+                           required>
+                               <option value="english">1</option>
+                               <option value="french"> 2 </option>
+                             
+                             </select>
+                        </mat-form-field>
+                         
+         
+                        <div *ngIf = "TestAbc" >
+                           
+                        
+                             
+                        <mat-radio-group 
+                        formControlName = "supervisor"
+                     
+                        [(ngModel)] = "client.supervisor" >
+                           <mat-radio-button value="true"> Yes </mat-radio-button>
+                           <mat-radio-button value="false"> No</mat-radio-button>
+                         </mat-radio-group>
+                        </div>
+
+                         <button mat-button type="submit" class = "mat-raised-button mat-warn"
+                          [disabled] = "!clientForm.valid"> Next </button>
+                    </form>       
+        </mat-card-content>
+         
+
+</mat-card>
